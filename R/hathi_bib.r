@@ -26,9 +26,10 @@
 #' to search for
 #' @param which (character) One of brief or full.
 #' @param searchfor (character) One of single or many.
-#' @param ... Further args passed on to httr::GET, see examples
+#' @param ... Further args passed on to \code{\link[httr]{GET}}, see examples
 #'
 #' @seealso \code{hathi} for description of the output of this function.
+#' @author Scott Chamberlain <myrmecocystus@@gmail.com>
 #'
 #' @examples \dontrun{
 #' # Search for a sinlge item by single identifier

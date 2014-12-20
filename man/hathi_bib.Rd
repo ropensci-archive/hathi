@@ -29,7 +29,7 @@ to search for}
 
 \item{searchfor}{(character) One of single or many.}
 
-\item{...}{Further args passed on to httr::GET, see examples}
+\item{...}{Further args passed on to \code{\link[httr]{GET}}, see examples}
 }
 \description{
 HathiTrust bibliographic API
@@ -59,6 +59,9 @@ hathi_bib(ids=list(list(htid='BJD1', oclc=424023, isbn='0030110408'),
 library("httr")
 hathi_bib(oclc=424023, config=verbose())
 }
+}
+\author{
+Scott Chamberlain <myrmecocystus@gmail.com>
 }
 \seealso{
 \code{hathi} for description of the output of this function.
