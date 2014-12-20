@@ -3,6 +3,19 @@ hathi
 
 An R client for HathiTrust API.
 
+## Installation
+
+```r
+install_github("ropensci/hathi")
+library("hathi")
+```
+
+## Usage
+
+```r
+hathi_bib(oclc=424023)
+```
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/hathi/issues).

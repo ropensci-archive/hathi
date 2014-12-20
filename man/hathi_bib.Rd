@@ -56,6 +56,7 @@ hathi_bib(ids=list(list(htid='BJD1', oclc=424023, isbn='0030110408'),
                    list(lccn='70628581', isbn='0030110408')), searchfor='many')
 
 # Curl debugging
+library("httr")
 hathi_bib(oclc=424023, config=verbose())
 }
 }

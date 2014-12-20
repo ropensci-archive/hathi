@@ -2,4 +2,4 @@
 
 export(hathi_bib)
 import(httr)
-import(jsonlite)
+importFrom(jsonlite,fromJSON)

@@ -11,7 +11,8 @@
 
 #' HathiTrust bibliographic API
 #'
-#' @import httr jsonlite
+#' @import httr
+#' @importFrom jsonlite fromJSON
 #' @export
 #'
 #' @param oclc OCLC Number. Will be normalized to just digits.
@@ -50,6 +51,7 @@
 #'                    list(lccn='70628581', isbn='0030110408')), searchfor='many')
 #'
 #' # Curl debugging
+#' library("httr")
 #' hathi_bib(oclc=424023, config=verbose())
 #' }
 
