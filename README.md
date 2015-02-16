@@ -1,6 +1,8 @@
 hathi
 =======
 
+[![Build Status](https://api.travis-ci.org/ropensci/hathi.png)](https://travis-ci.org/ropensci/hathi)
+
 An R client for HathiTrust API.
 
 ## Installation
