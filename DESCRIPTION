@@ -1,6 +1,7 @@
 Package: hathi
 Title: An R client for 'HathiTrust' API
-Description: An R client for 'HathiTrust' API.
+Description: An R client for 'HathiTrust' API. Only for the bibliographic 
+    API for now.
 Version: 0.0.2.9100
 License: MIT + file LICENSE
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),

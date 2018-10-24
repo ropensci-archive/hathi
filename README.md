@@ -5,6 +5,8 @@ hathi
 
 An R client for HathiTrust API.
 
+Only contains interaction with the bibliographic API for now.
+
 ## Installation
 
 
