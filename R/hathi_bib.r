@@ -81,7 +81,7 @@
 #'  data have been entered at different institutions and at different times makes it impractical 
 #'  to guarantee the order will be correct, but it is more often than not correct.
 #' 
-#' @references <http://www.hathitrust.org/bib_api>
+#' @references <https://www.hathitrust.org/bib_api>
 #'
 #' @examples \dontrun{
 #' # Search for a sinlge item by single identifier

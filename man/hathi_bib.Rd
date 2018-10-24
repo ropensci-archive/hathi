@@ -115,7 +115,7 @@ hathi_bib(oclc=424023, verbose = TRUE)
 }
 }
 \references{
-\url{http://www.hathitrust.org/bib_api}
+\url{https://www.hathitrust.org/bib_api}
 }
 \author{
 Scott Chamberlain \href{mailto:myrmecocystus@gmail.com}{myrmecocystus@gmail.com}
