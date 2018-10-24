@@ -11,10 +11,7 @@
 
 #' HathiTrust bibliographic API
 #'
-#' @import httr
-#' @importFrom jsonlite fromJSON
 #' @export
-#'
 #' @param oclc OCLC Number. Will be normalized to just digits.
 #' @param lccn Will be normalized as recommended
 #' @param issn Will be normalized to just digits
@@ -26,10 +23,65 @@
 #' to search for
 #' @param which (character) One of brief or full.
 #' @param searchfor (character) One of single or many.
-#' @param ... Further args passed on to \code{\link[httr]{GET}}, see examples
+#' @param ... Further args passed on to [crul::HttpClient], see examples
 #'
-#' @seealso \code{hathi} for description of the output of this function.
 #' @author Scott Chamberlain <myrmecocystus@@gmail.com>
+#' 
+#' @return 
+#' 
+#' There are two sections: Records which holds basic metadata about the set of records which match 
+#' the query, and Items which lists the complete set of individual HathiTrust items (volumes) 
+#' associated with those records.
+#' 
+#' **Records**
+#' 
+#' The records section. The records structure is a hash keyed on the nine-digit record number of 
+#' each matched record. It may easily contain multiple records, since duplicates, while not 
+#' common, are certainly possible.
+#' 
+#' For each record:
+#' 
+#' - recordURL: The URL to the catalog display record.
+#' - titles: The list of titles associated with this record, for sanity checking. This list 
+#'  includes the standard (MARC field 245) title with and without leading articles, and any 
+#'  vernacular (foreign language) titles provided in the record (MARC field 880).
+#' - isbns, issns, lccns, oclcs, lccns: Each is a (possibly empty) list of identifiers of the 
+#'  appropriate type.
+#' - marc-xml: The full MARC-XML of the record if the URL was of the form /api/volumes/full/...
+#'  MARC-XML is not included in brief return values.
+#' 
+#' **Items**
+#' 
+#' The items structure is an array of hashes describing all the available items associated with 
+#' matched records. There may be multiple items because the record(s) in question describe a 
+#' serial or multi-volume set, or because identical volumes were digitized at more than one 
+#' contributing institution.
+#' 
+#' For each item:
+#' 
+#' - orig: The originating institution -- where this particular volume was digitized.
+#' - fromRecord: The nine-digit record number to which this particular item is attached. It 
+#'  will always be one of the records listed in the records section.
+#' - htid: The HathiTrust volume id.
+#' - itemURL: The URL to this item in the pageturner interface. This is trivially derived from 
+#'  the htid at the moment, but is included here in the event that the handle URLs get more complex 
+#'  in the future.
+#' - rightsCode: The rights code as used in the downloadable files, describing the copyright 
+#'  status of the item and what users in various locales are able to do with it.
+#' - lastUpdate: The date (YYYYMMDD) this item was ingested or last changed (because, e.g., 
+#'  the rights determination changed).
+#' - enumcron: The enumeration/chronology of the item, describing its place in a series. 
+#'  These are commonly of the form, "vol. 3, n. 2 1993" or something similar. Used to sort the 
+#'  items when present.
+#' - usRightsString: A textual description of the rights for a US-based user. This is, again, 
+#'  trivially derived from the rightsCode, but useful enough to the majority of likely users that 
+#'  it is included here. Will be either "Limited (search only)" or "Full View." As noted, a 
+#'  reasonably-sophisticated attempt is made to sort items by their enumcron (when present), 
+#'  often resulting in the items listed correctly by volume/number. Variation in the way these 
+#'  data have been entered at different institutions and at different times makes it impractical 
+#'  to guarantee the order will be correct, but it is more often than not correct.
+#' 
+#' @references <http://www.hathitrust.org/bib_api>
 #'
 #' @examples \dontrun{
 #' # Search for a sinlge item by single identifier
@@ -52,8 +104,7 @@
 #'                    list(lccn='70628581', isbn='0030110408')), searchfor='many')
 #'
 #' # Curl debugging
-#' library("httr")
-#' hathi_bib(oclc=424023, config=verbose())
+#' hathi_bib(oclc=424023, verbose = TRUE)
 #' }
 
 hathi_bib <- function(oclc=NULL, lccn=NULL, issn=NULL, isbn=NULL, htid=NULL, recordnumber=NULL,
@@ -81,10 +132,10 @@ hathi_bib <- function(oclc=NULL, lccn=NULL, issn=NULL, isbn=NULL, htid=NULL, rec
     url <- sprintf('http://catalog.hathitrust.org/api/volumes/%s/json/%s', which, args)
   }
 
-  res <- GET(url, ...)
-  stop_for_status(res)
-  tt <- content(res, "text")
-  jsonlite::fromJSON(tt)
+  cli <- crul::HttpClient$new(url, opts = list(...))
+  res <- cli$get()
+  res$raise_for_status()
+  jsonlite::fromJSON(res$parse("UTF-8"))
 }
 
 makeargs <- function(x, sep=';'){

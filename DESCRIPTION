@@ -11,7 +11,7 @@ LazyLoad: yes
 Roxygen: list(wrap = FALSE, markdown = TRUE)
 Encoding: UTF-8
 Imports:
-    httr,
+    crul,
     jsonlite
 Suggests:
     knitr

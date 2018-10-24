@@ -2,5 +2,5 @@
 
 export(hathi_bib)
 export(hathi_data)
-import(httr)
+importFrom(crul,HttpClient)
 importFrom(jsonlite,fromJSON)
