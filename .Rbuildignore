@@ -3,3 +3,6 @@
 ^\.httr-oauth$
 .travis.yml
 ^codemeta\.json$
+^CODE_OF_CONDUCT\.md$
+.github
+README.Rmd
