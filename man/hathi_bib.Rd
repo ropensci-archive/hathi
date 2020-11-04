@@ -4,9 +4,18 @@
 \alias{hathi_bib}
 \title{HathiTrust bibliographic API}
 \usage{
-hathi_bib(oclc = NULL, lccn = NULL, issn = NULL, isbn = NULL,
-  htid = NULL, recordnumber = NULL, ids = list(), which = "brief",
-  searchfor = "single", ...)
+hathi_bib(
+  oclc = NULL,
+  lccn = NULL,
+  issn = NULL,
+  isbn = NULL,
+  htid = NULL,
+  recordnumber = NULL,
+  ids = list(),
+  which = "brief",
+  searchfor = "single",
+  ...
+)
 }
 \arguments{
 \item{oclc}{OCLC Number. Will be normalized to just digits.}

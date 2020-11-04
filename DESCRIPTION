@@ -2,7 +2,7 @@ Package: hathi
 Title: An R client for 'HathiTrust' API
 Description: An R client for 'HathiTrust' API (<https://www.hathitrust.org>). Only for the bibliographic 
     API for now.
-Version: 0.0.2.9100
+Version: 0.0.3.91
 License: MIT + file LICENSE
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
@@ -16,4 +16,4 @@ Imports:
     jsonlite
 Suggests:
     knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
