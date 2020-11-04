@@ -1,7 +1,7 @@
 hathi
 =======
 
-[![Build Status](https://api.travis-ci.org/ropensci/hathi.png)](https://travis-ci.org/ropensci/hathi)
+[![R-check](https://github.com/ropensci/hathi/workflows/R-check/badge.svg)](https://github.com/ropensci/hathi/actions?query=workflow%3AR-check)
 
 An R client for HathiTrust API.
 
